@@ -1,11 +1,11 @@
 SE_SRC		= server.c
 CL_SRC		= client.c
 
-CC		= cc
+CC			= cc
 CFLAG		= -Wall -Wextra -Werror
 LFLAG		= -L ./libft -lft
-O		= -o
-RM		= rm -f
+O			= -o
+RM			= rm -f
 
 LIBFT		= libft/libft.a
 
@@ -18,10 +18,10 @@ all:		$(NAME)
 
 $(NAME):	$(SERVER) $(CLIENT)
 
-$(SERVER):	$(LIBFT)
+$(SERVER):	$(LIBFT) $(SE_SRC)
 		$(CC) $(SE_SRC) $(CFLAG) $(LFLAG) $(O) $(SERVER)
 
-$(CLIENT):	$(LIBFT)
+$(CLIENT):	$(LIBFT) $(CL_SRC)
 		$(CC) $(CL_SRC) $(CFLAG) $(LFLAG) $(O) $(CLIENT)
 
 $(LIBFT):
@@ -31,8 +31,7 @@ clean:
 		@make clean -C libft
 
 fclean:		clean
-		@make fclean -C libft
-		$(RM) $(SERVER) $(CLIENT)
+		$(RM) $(LIBFT) $(SERVER) $(CLIENT)
 
 re:		fclean all
 
